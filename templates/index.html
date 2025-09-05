@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% block title %}ReWear - Sustainable Fashion
+Marketplace{% endblock %} {% block content %}
+<!-- Hero Section -->
+<div
+  class="row text-center py-5 mb-4"
+  style="
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+  ">
+  <div class="col-12">
+    <h1 class="display-4 fw-bold mb-4">Welcome to ReWear</h1>
+    <p class="lead mb-4">
+      Sustainable fashion marketplace - Give your clothes a second life
+    </p>
+    {% if not current_user.is_authenticated %}
+    <div class="d-flex justify-content-center gap-3">
+      <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">
+        Get Started
+      </a>
+      <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+        Sign In
+      </a>
+    </div>
+    {% else %}
+    <div class="d-flex justify-content-center gap-3">
+      <a href="{{ url_for('dashboard') }}" class="btn btn-light btn-lg">
+        Go to Dashboard
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="row g-4 mb-4">
+  <div class="col-md-4">
+    <div class="card h-100 text-center border-0 shadow-sm">
+      <div class="card-body p-4">
+        <div class="mb-3">
+          <i class="fas fa-leaf fa-3x text-success"></i>
+        </div>
+        <h5 class="card-title">Sustainable</h5>
+        <p class="card-text">
+          Reduce fashion waste by giving clothes a second life. Help create a
+          more sustainable future.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card h-100 text-center border-0 shadow-sm">
+      <div class="card-body p-4">
+        <div class="mb-3">
+          <i class="fas fa-dollar-sign fa-3x text-primary"></i>
+        </div>
+        <h5 class="card-title">Affordable</h5>
+        <p class="card-text">
+          Find quality fashion at great prices. Sell items you no longer wear
+          and earn money.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card h-100 text-center border-0 shadow-sm">
+      <div class="card-body p-4">
+        <div class="mb-3">
+          <i class="fas fa-users fa-3x text-info"></i>
+        </div>
+        <h5 class="card-title">Community</h5>
+        <p class="card-text">
+          Join a community of fashion-conscious individuals who care about
+          sustainability.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if current_user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Welcome back, {{ current_user.username }}!</h4>
+  <p>You are successfully logged in. Ready to explore sustainable fashion?</p>
+  <hr />
+  <p class="mb-0">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-success"
+      >Go to Dashboard</a
+    >
+  </p>
+</div>
+{% endif %} {% endblock %}

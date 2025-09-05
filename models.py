@@ -1,10 +1,11 @@
 import uuid
-from app import db
+from database import db
 from sqlalchemy import CheckConstraint
 from datetime import datetime
+from flask_login import UserMixin
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """User model representing a user in the system."""
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     username = db.Column(db.String(150), unique=True, nullable=False)
